@@ -1,0 +1,15 @@
+<h1>Site - Welcome</h1>
+
+<% if user_signed_in? %>
+  <p> O usuário está logado</p>
+  <p><%= current_user.inspect %></p>
+<% else %>
+  <p> O usuário não está logado</p>
+<% end %>
+
+<% if admin_signed_in? %>
+  <p> O admin está logado</p>
+  <p><%= current_admin.inspect %></p>
+<% else %>
+  <p> O admin não está logado</p>
+<% end %>
