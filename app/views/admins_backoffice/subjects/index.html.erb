@@ -2,8 +2,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Assunto/Área</th>
+      <th><%= translate_atrribute(@subjects, :id) %></th>
+      <th><%= translate_atrribute(@subjects, :description) %></th>
       <th>
         <%= link_to new_admins_backoffice_subject_path, class: "btn btn-success btn-circle btn-sm" do %>
           <i class="fas fa-plus"></i>

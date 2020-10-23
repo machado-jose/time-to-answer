@@ -7,6 +7,12 @@
       user:
         one: Usuário
         other: Usuários
+      question:
+        one: Questão
+        other: Questões
+      subject:
+        one: Assunto
+        other: Assuntos
     attributes:
       admin:
         id: Código
@@ -20,5 +26,16 @@
         email: Email
         password: Senha
         password_confirmation: Confirmação da Senha
+        created_at: Criado em
+        updated_at: Atualizado em
+      subject:
+        id: Código
+        description: Descrição
+        created_at: Criado em
+        updated_at: Atualizado em
+      question:
+        id: Código
+        description: Descrição
+        subject: Assunto
         created_at: Criado em
         updated_at: Atualizado em
