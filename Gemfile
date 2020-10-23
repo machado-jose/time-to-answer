@@ -51,6 +51,10 @@ gem 'tty-spinner'
 # Faker
 gem 'faker'
 
+# Kaminari
+gem 'kaminari'
+gem 'kaminari-i18n'
+
 # --------------------------------------------------------
 
 group :development, :test do
