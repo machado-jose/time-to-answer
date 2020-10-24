@@ -55,6 +55,9 @@ gem 'faker'
 gem 'kaminari'
 gem 'kaminari-i18n'
 
+# Cocoon
+gem "cocoon"
+
 # --------------------------------------------------------
 
 group :development, :test do
