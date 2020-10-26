@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Time To Answer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'site', media: 'all' %>
+
   </head>
 
   <body>
-    <h1>Site em Construção</h1>
-    <%= yield %>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md navbar-light bg-light rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="row flex-grow-1 d-none d-md-flex">
+          <%= link_to 'Time to Answer', root_path, class:"navbar-brand mx-2" %>
+          <%= form_with url: site_search_path, local: true, class:"form-inline", method: :get do |form| %>
+            <%= form.text_field :term, class: "form-control", placeholder: "Digite algo..." %>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          <% end %>
+        </div>
+        
+        <div class="collapse navbar-collapse justify-content-md-end" id="navbarsExample10">
+          <ul class="navbar-nav">
+            <% unless user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Entrar', new_user_session_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Cadastrar', new_user_registration_path, class:"nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></a>
+                <div class="dropdown-menu" aria-labelledby="dropdown10">
+                  <%= link_to users_backoffice_welcome_index_path, class: 'dropdown-item' do %>
+                      <i class="fa fa-user"></i> Perfil
+                  <% end %>
+                  <hr>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                      <i class="fa fa-sign-out"></i> Sair
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+
+      <% if user_signed_in? %>
+        <%= yield %>
+      <% end %>
+
+    <!-- End Container-->  
+    </div>
+
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'site' %>
+
+    <% if flash %>
+      <% flash.each do |key, value| %>
+        <%= javascript_tag do %>
+          $.bootstrapGrowl("<%= value %>", {
+            type: 'success', // (null, 'info', 'danger', 'success')
+            align: 'right', // ('left', 'right', or 'center')
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
+        <% end %>
+      <% end %>
+    <% end %>
+
   </body>
 </html>
