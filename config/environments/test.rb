@@ -43,4 +43,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Disable wrapper field_with_erros
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+    html_tag.html_safe
+  end
 end

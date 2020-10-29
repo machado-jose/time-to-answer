@@ -69,4 +69,9 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = Socket.ip_address_list.reduce([]) do |res, addrinfo|
     addrinfo.ipv4? ? res << IPAddr.new(addrinfo.ip_address).mask(24) : res
   end
+
+  # Disable wrapper field_with_erros
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+    html_tag.html_safe
+  end
 end

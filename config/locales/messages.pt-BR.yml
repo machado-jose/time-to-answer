@@ -4,3 +4,5 @@
     editing: Editando %{model}
     listing: Listando %{model}
     new: Novo %{model}
+    welcome: Bem-Vindo
+    welcome_to: Bem-Vindo %{item}!
