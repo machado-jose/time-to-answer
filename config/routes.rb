@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
   end
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   namespace :admins_backoffice do
     get 'welcome/index'
     resources :admins
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get 'subject/:subject_id/:subject', to: 'search#subject', as: 'search_subject'
   end
 
-  get '/inicio', to: 'site/welcome#index'
+  get '/admin', to: 'admins_backoffice/welcome#index'
   root to: 'site/welcome#index'
+  
 end

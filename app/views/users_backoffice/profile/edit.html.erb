@@ -36,6 +36,48 @@
               <%= form.text_field :email, class: "form-control", readonly: true %>
             </div>
           </div>
+          <%= form.fields_for :user_profile do |profile_form| %>
+            <div class="item form-group">
+              <%= profile_form.label :address, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+              <div class="col-md-6 col-sm-6 ">
+                <%= profile_form.text_field :address, class: "form-control" %>
+              </div>
+            </div>  
+            <div class="item form-group">
+              <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
+              <div class="col-md-6 col-sm-6 ">
+                <div id="gender" class="btn-group" data-toggle="buttons">
+                  <label class="btn <%= gender_select(@user, 'M') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" onclick="changeGender(this)">
+                    <%= profile_form.radio_button :gender, "M", class: "join-btn", 'data-parsley-multiple':"gender" %> &nbsp; Masculino &nbsp;
+                  </label>
+                  <label class="btn <%= gender_select(@user, 'F') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" onclick="changeGender(this)">
+                    <%= profile_form.radio_button :gender, "F", class: "join-btn", 'data-parsley-multiple':"gender" %> &nbsp; Feminino &nbsp;
+                  </label>
+                </div>
+              </div>
+              <script>
+                function changeGender(genderSelected){
+                  var labels = document.querySelectorAll('div#gender label');
+
+                  genderSelected.classList.remove('btn-default');
+                  genderSelected.classList.add('btn-primary');
+
+                  labels.forEach(otherLabel => {
+                    if(otherLabel !== genderSelected){
+                      otherLabel.classList.remove('btn-primary');
+                      otherLabel.classList.add('btn-default');
+                    }
+                  });
+                }
+              </script>
+            </div>
+            <div class="item form-group">
+              <%= profile_form.label :birthdate, class:"col-form-label col-md-3 col-sm-3 label-align" %>
+              <div class="col-md-6 col-sm-6 ">
+                <%= profile_form.text_field :birthdate, class: "form-control datepicker", value:(l(@user.user_profile.birthdate) unless @user.user_profile.birthdate.blank? ) %>
+              </div>
+            </div>
+          <% end %>
           <div class="item form-group">
             <%= form.label :password, class:"col-form-label col-md-3 col-sm-3 label-align" %>
             <div class="col-md-6 col-sm-6 ">
@@ -51,7 +93,7 @@
           <div class="ln_solid"></div>
           <div class="item form-group">
             <div class="col-md-6 col-sm-6 offset-md-3">
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-success">Enviar</button>
             </div>
           </div>
 

@@ -30,7 +30,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <%= image_tag 'img.jpeg', alt: "...", class: "img-circle profile_img" %>
+                <%= link_to (image_tag 'img.jpeg', alt: "photoUser", class: "img-circle profile_img"), '#', 'data-toggle':"modal", 'data-target':"#avatarModel" %>
               </div>
               <div class="profile_info">
                 <span><%= t('messages.welcome') %>,</span>
@@ -133,6 +133,28 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="avatarModel" tabindex="-1" role="dialog" aria-labelledby="myAvatarModel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myAvatarModel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Modal -->
+
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'users_backoffice' %>
 
@@ -145,6 +167,12 @@
         stackup_spacing: 10 // spacing between consecutively stacked growls.
       });
     <% end %>
+  <% end %>
+
+  <%= javascript_tag do %>      
+    $(function() {        
+      $('.datepicker').datepicker();      
+    });    
   <% end %>
 
   </body>
